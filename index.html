@@ -1,0 +1,430 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NIGHT RAIDERS EMPIRE</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- LOADING SCREEN -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loading-grid"></div>
+    <div class="loading-container">
+      <div class="loading-emblem-wrap">
+        <div class="loading-ring r1"></div>
+        <div class="loading-ring r2"></div>
+        <div class="loading-ring r3"></div>
+        <div class="loading-skull">💀</div>
+      </div>
+      <div class="loading-brand">NIGHT<span>RAIDERS</span></div>
+      <div class="loading-terminal">
+        <span class="terminal-prefix">empire@nightraiders:~$</span>
+        <span id="loadingText"></span>
+        <span class="terminal-cursor">█</span>
+      </div>
+      <div class="loading-bar-wrap">
+        <div class="loading-bar">
+          <div class="loading-progress" id="loadingProgress"></div>
+          <div class="loading-bar-glow"></div>
+        </div>
+        <span class="loading-percent" id="loadingPercent">0%</span>
+      </div>
+      <div class="loading-credit">Founded by <span>𝐋𝐎𝐑𝐃♰𝔻𝐄𝐕𝐈𝐍𝐄 𓄿</span></div>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="app" class="hidden">
+
+    <!-- SIDE MENU OVERLAY -->
+    <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+    <!-- SIDE MENU -->
+    <nav class="side-menu" id="sideMenu">
+      <div class="menu-header">
+        <div class="menu-skull-icon">💀</div>
+        <div class="menu-brand-text">NIGHT<span>RAIDERS</span></div>
+      </div>
+      <div class="menu-links" id="menuLinks">
+        <a href="#" class="menu-link active" onclick="showPage('home');closeMenu();" data-page="home">
+          <span class="menu-icon">🏠</span>Home
+        </a>
+        <a href="#" class="menu-link" onclick="showPage('about');closeMenu();" data-page="about">
+          <span class="menu-icon">📜</span>About
+        </a>
+        <a href="#" class="menu-link" onclick="showPage('members');closeMenu();" data-page="members">
+          <span class="menu-icon">⚔</span>Raiders
+        </a>
+        <a href="#" class="menu-link" onclick="showPage('leaderboard');closeMenu();" data-page="leaderboard">
+          <span class="menu-icon">🏆</span>Leaderboard
+        </a>
+        <a href="#" class="menu-link" onclick="showPage('raids');closeMenu();" data-page="raids">
+          <span class="menu-icon">🔥</span>Raid History
+        </a>
+        <a href="#" class="menu-link" onclick="showPage('hof');closeMenu();" data-page="hof">
+          <span class="menu-icon">👑</span>Hall of Fame
+        </a>
+        <a href="#" class="menu-link" onclick="showPage('join');closeMenu();" data-page="join">
+          <span class="menu-icon">➕</span>Join Us
+        </a>
+        <!-- ADMIN ONLY -->
+        <div class="menu-divider admin-only hidden" id="adminDivider"><span>LORD DEVINE</span></div>
+        <a href="#" class="menu-link admin-only hidden" onclick="showPage('admin');closeMenu();" data-page="admin">
+          <span class="menu-icon">⚙️</span>Admin Panel
+        </a>
+        <a href="#" class="menu-link admin-only hidden logout-link" onclick="doLogout();closeMenu();">
+          <span class="menu-icon">🚪</span>Logout
+        </a>
+      </div>
+      <div class="menu-footer-area">
+        <p class="menu-footer-copy">© 2026 𝐋𝐎𝐑𝐃♰𝔻𝐄𝐕𝐈𝐍𝐄 𓄿</p>
+        <p class="menu-footer-copy">【☠︎】 Night Raiders Empire 【☠︎】</p>
+        <span class="lord-trigger" onclick="openLogin()">Lord Access</span>
+      </div>
+    </nav>
+
+    <!-- TOP NAVBAR -->
+    <nav class="topnav">
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topnav-brand">
+        <span class="tnav-skull">💀</span>
+        <span class="tnav-title">NIGHT<span>RAIDERS</span></span>
+      </div>
+      <div class="topnav-tag">Lord Devine Empire</div>
+    </nav>
+
+    <!-- PAGES -->
+    <main class="pages-wrap">
+
+      <!-- HOME -->
+      <div id="homePage" class="page active">
+        <div class="page-inner">
+          <div class="hero">
+            <div class="hero-bg">
+              <div class="hero-grid"></div>
+              <div class="hero-noise"></div>
+              <div class="hero-orb o1"></div>
+              <div class="hero-orb o2"></div>
+            </div>
+            <div class="hero-content">
+              <div class="hero-badge"><span class="badge-dot"></span>【☠︎】 LORD DEVINE EMPIRE 【☠︎】</div>
+              <h1 class="hero-title">NIGHT<br/><span class="hero-sub-word">RAIDERS</span></h1>
+              <p class="hero-legion">THE LEGION OF DOMINANCE</p>
+              <div class="hero-rule"></div>
+              <p class="hero-desc">Welcome to the official Night Raiders Empire website. Here you will learn about our raiders, our members, our clan creed — and the fire that drove Lord Devine to build something the battlefield will never forget.</p>
+              <div class="hero-stats">
+                <div class="hstat"><span class="hstat-val" id="heroRaiders">0</span><span class="hstat-lbl">Raiders</span></div>
+                <div class="hstat-sep"></div>
+                <div class="hstat"><span class="hstat-val" id="heroRaids">0</span><span class="hstat-lbl">Total Raids</span></div>
+                <div class="hstat-sep"></div>
+                <div class="hstat"><span class="hstat-val" id="heroBots">0</span><span class="hstat-lbl">Active Bots</span></div>
+              </div>
+              <div class="hero-actions">
+                <button class="btn btn-primary" onclick="showPage('join')">
+                  Join The Legion
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <button class="btn btn-ghost" onclick="showPage('about')">Our Story</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="home-block">
+            <div class="section-label"><span>LATEST FROM THE EMPIRE</span></div>
+            <div id="homeAnnList"></div>
+            <div class="view-more"><button class="btn btn-ghost small" onclick="showPage('about')">View All →</button></div>
+          </div>
+
+          <div class="home-block">
+            <div class="section-label"><span>CLAN CREED</span></div>
+            <div class="creed-card">
+              <div class="creed-quote">"</div>
+              <p class="creed-text">We are not mere players. We are the rulers. Where others seek attention, we command respect. Where others make noise, we create legends. In the darkness, we rise. In the shadows, we rule.</p>
+              <div class="creed-sig">— 𝐋𝐎𝐑𝐃♰𝔻𝐄𝐕𝐈𝐍𝐄 𓄿</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div id="aboutPage" class="page">
+        <div class="page-inner">
+          <div class="page-header">
+            <div class="page-eyebrow">The Story</div>
+            <h2 class="page-title">About <span class="accent">Night Raiders</span></h2>
+          </div>
+          <div class="about-emblem-card">
+            <div class="about-skull-big">💀</div>
+            <h3 class="about-clan-name">【☠︎】 NIGHT RAIDERS 【☠︎】</h3>
+            <p class="about-tagline">THE LEGION OF DOMINANCE</p>
+            <p class="about-pillars">Peace &amp; Harmony · Absolute Power · Eternal Legacy</p>
+          </div>
+          <div class="story-block">
+            <div class="story-label">September 28, 2025 — The Night It Started</div>
+            <p>Every empire has a moment of ignition. For Night Raiders, that moment came on the night of September 28th, 2025 — when Lord Devine and Lord Zephyr executed their first group hijack together.</p>
+            <p>It wasn't just a raid. It was a statement. They infiltrated a WhatsApp group, systematically bugged the admins and members, and made one thing crystal clear: remove us, and we come to your DM. The fear was real. The admins complied. Admin access was granted — and the moment it was, every admin was removed and the group was renamed <em>For Sale.</em></p>
+            <p>By the end of that same night, the group had a buyer. Two men. One operation. One sale. And a feeling neither of them had felt before — the rush of building something from nothing and profiting from the chaos.</p>
+          </div>
+          <div class="story-block">
+            <div class="story-label">September 30, 2025 — The Empire Takes Shape</div>
+            <p>Lord Devine quickly understood one truth: hunting alone is slow. Gathering group links, scouting targets, running operations — it required more hands. On September 30th, just two days after the first hijack, he reached out to a trusted friend — Lord Obito Uchiha — and asked him to create a group.</p>
+            <p>The group existed before the name did. Lord Devine sat with it for a full day, searching for something that meant something. Then it came to him — they raided in the night. They moved while others slept. They struck when the world was quiet and unprepared. There was only one name for what they were.</p>
+            <p><strong>Night Raiders.</strong></p>
+          </div>
+          <div class="story-block">
+            <div class="story-label">The Growth</div>
+            <p>Word spread. Lord Reaper joined, bringing with him a spy network that sees everything before it happens. Lady Deedee arrived — underestimated by everyone, feared by those who knew better. Lord Anonymous, Lord Guardian, Lord Slur, Lord Deluxe and others followed — each one hand-picked, each one carrying the standard.</p>
+            <p>Night Raiders reached its peak in hijacking operations. Groups were raided, taken over, and sold. The empire was not just growing — it was earning. Fun and profit, built on precision and discipline.</p>
+          </div>
+          <div class="story-block">
+            <div class="story-label">On War — A Misunderstood Doctrine</div>
+            <p>Let this be clearly understood: Night Raiders was not built for direct war. Our origin is hijacking — calculated, profitable, and executed with surgical precision. We do not declare open war under the Night Raiders name. That is not weakness. That is strategy.</p>
+            <p>When our allies — clans like the Saints — need support in battle, Night Raiders answers the call. We fight. We show up. But we do so on our terms, as a force that chooses when and how it engages. Any clan that has mistaken our restraint for fear has never seen what happens when we decide to move.</p>
+            <p>The crash bots are ready. The ban bots are armed. The spy network is active. Night Raiders has never needed to go to war — because no clan has been bold enough to force our hand. That day has not yet come. But the empire is prepared.</p>
+          </div>
+          <div class="story-block">
+            <div class="story-label">Today</div>
+            <p>What began as two men and a single hijacked group on a quiet September night has grown into a structured empire with ranked members, defined roles, an intelligence network, and a reputation that precedes every operation.</p>
+            <p>Night Raiders is not a clan you stumble into. It is a clan you earn your place in. The badge 【☠︎】 worn by every raider and 【𖦠】 carried by the ranked few — these are not decorations. They are proof of what you survived to become.</p>
+            <p>The story is still being written. The raids are still happening. And the night is still ours.</p>
+          </div>
+          <div class="section-label" style="margin-top:3rem"><span>ANNOUNCEMENTS</span></div>
+          <div id="fullAnnList"></div>
+        </div>
+      </div>
+
+      <!-- MEMBERS -->
+      <div id="membersPage" class="page">
+        <div class="page-inner">
+          <div class="page-header">
+            <div class="page-eyebrow">The Brotherhood</div>
+            <h2 class="page-title">Night <span class="accent">Raiders</span></h2>
+          </div>
+          <div class="members-grid" id="membersGrid"></div>
+        </div>
+      </div>
+
+      <!-- LEADERBOARD -->
+      <div id="leaderboardPage" class="page">
+        <div class="page-inner">
+          <div class="page-header">
+            <div class="page-eyebrow">The Hierarchy</div>
+            <h2 class="page-title">Raider <span class="accent">Rankings</span></h2>
+          </div>
+          <div class="lb-list" id="lbList"></div>
+        </div>
+      </div>
+
+      <!-- RAIDS -->
+      <div id="raidsPage" class="page">
+        <div class="page-inner">
+          <div class="page-header">
+            <div class="page-eyebrow">Battle Records</div>
+            <h2 class="page-title">Raid <span class="accent">History</span></h2>
+          </div>
+          <div class="raids-list" id="raidsList"></div>
+        </div>
+      </div>
+
+      <!-- HALL OF FAME -->
+      <div id="hofPage" class="page">
+        <div class="page-inner">
+          <div class="page-header">
+            <div class="page-eyebrow">Eternal Glory</div>
+            <h2 class="page-title">Hall of <span class="accent">Fame</span></h2>
+          </div>
+          <div class="hof-grid" id="hofGrid"></div>
+        </div>
+      </div>
+
+      <!-- JOIN -->
+      <div id="joinPage" class="page">
+        <div class="page-inner">
+          <div class="page-header">
+            <div class="page-eyebrow">Enlist</div>
+            <h2 class="page-title">Join the <span class="accent">Legion</span></h2>
+          </div>
+          <div class="join-warning">
+            <span class="warn-icon">⚠</span>
+            <div><strong>Read before applying.</strong><p>Night Raiders does not accept everyone. Only warriors who are ready to be active, loyal, and represent the empire with honour will be considered.</p></div>
+          </div>
+          <div class="section-label" style="margin-bottom:1.25rem"><span>REQUIREMENTS</span></div>
+          <div class="rule-list">
+            <div class="rule-item"><span class="rule-num">01</span><span>Be active — inactive members are removed without warning.</span></div>
+            <div class="rule-item"><span class="rule-num">02</span><span>Total loyalty to Lord Devine and the Night Raiders empire.</span></div>
+            <div class="rule-item"><span class="rule-num">03</span><span>Participate in raids regularly or face removal.</span></div>
+            <div class="rule-item"><span class="rule-num">04</span><span>Wear the 【☠︎】 badge with honour at all times in-game.</span></div>
+            <div class="rule-item"><span class="rule-num">05</span><span>No betrayal. No leaking clan strategies. Zero tolerance.</span></div>
+          </div>
+          <div class="join-form-card">
+            <div class="input-group"><label>In-Game Name</label><input type="text" id="joinName" placeholder="Your warrior name"/></div>
+            <div class="input-group">
+              <label>WhatsApp Number</label>
+              <input type="tel" id="joinWhatsapp" placeholder="e.g. 2349078634537" maxlength="15"/>
+              <span class="input-hint">Country code + number. No + or spaces.</span>
+            </div>
+            <div class="input-group"><label>Platform</label>
+              <select id="joinPlatform"><option value="">Select your platform</option><option>Mobile</option><option>PC</option><option>Console</option></select>
+            </div>
+            <div class="input-group"><label>Experience Level</label>
+              <select id="joinLevel"><option value="">Select level</option><option>Beginner</option><option>Intermediate</option><option>Veteran</option><option>Elite</option></select>
+            </div>
+            <div class="input-group"><label>Why should Night Raiders accept you?</label><textarea id="joinReason" rows="4" placeholder="Prove your worth..."></textarea></div>
+            <button class="btn btn-primary full" onclick="submitApplication()">Submit Application</button>
+            <div class="success-msg hidden" id="joinSuccess">Application received. Lord Devine will review it. Stand by.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADMIN -->
+      <div id="adminPage" class="page">
+        <div class="page-inner">
+          <div class="page-header">
+            <div class="page-eyebrow">Lord Devine</div>
+            <h2 class="page-title">Admin <span class="accent">Panel</span></h2>
+          </div>
+          <div class="admin-tabs">
+            <button class="atab active" onclick="switchAdminTab('stats',this)">Stats</button>
+            <button class="atab" onclick="switchAdminTab('announce',this)">News</button>
+            <button class="atab" onclick="switchAdminTab('members',this)">Members</button>
+            <button class="atab" onclick="switchAdminTab('lboard',this)">Ranks</button>
+            <button class="atab" onclick="switchAdminTab('raidlog',this)">Raids</button>
+            <button class="atab" onclick="switchAdminTab('hofed',this)">Hall</button>
+            <button class="atab" onclick="switchAdminTab('apps',this)">Apps</button>
+          </div>
+
+          <div class="admin-tab-content active" id="tab-stats">
+            <div class="admin-card">
+              <div class="admin-card-label">📊 Edit Clan Stats</div>
+              <div class="stat-edit-row">
+                <div class="input-group"><label>Raiders</label><input type="number" id="a-raiders" placeholder="0"/></div>
+                <div class="input-group"><label>Total Raids</label><input type="number" id="a-raids" placeholder="0"/></div>
+                <div class="input-group"><label>Active Bots</label><input type="number" id="a-bots" placeholder="0"/></div>
+              </div>
+              <button class="btn btn-primary" onclick="saveStats()">Save Stats</button>
+              <div class="success-msg hidden" id="stats-ok">Stats updated!</div>
+            </div>
+          </div>
+
+          <div class="admin-tab-content" id="tab-announce">
+            <div class="admin-card">
+              <div class="admin-card-label">📢 Post Announcement</div>
+              <div class="input-group"><label>Title</label><input type="text" id="a-ann-title" placeholder="Title"/></div>
+              <div class="input-group"><label>Message</label><textarea id="a-ann-body" rows="4" placeholder="Write your message..."></textarea></div>
+              <div class="input-group"><label>Badge (optional)</label><input type="text" id="a-ann-badge" placeholder="e.g. URGENT"/></div>
+              <button class="btn btn-primary" onclick="postAnnouncement()">Post</button>
+              <div class="success-msg hidden" id="ann-ok">Posted!</div>
+            </div>
+            <div class="admin-card" style="margin-top:1rem">
+              <div class="admin-card-label">Existing Announcements</div>
+              <div id="a-ann-list"></div>
+            </div>
+          </div>
+
+          <div class="admin-tab-content" id="tab-members">
+            <div class="admin-card">
+              <div class="admin-card-label">⚔ Add New Member</div>
+              <div class="input-group"><label>Name</label><input type="text" id="a-mem-name" placeholder="e.g. Lord Shadow"/></div>
+              <div class="input-group"><label>Role / Title</label><input type="text" id="a-mem-rank" placeholder="e.g. 𝙍𝘼𝙄𝘿𝙀𝙍 or 𝙃𝙀𝘼𝘿 𝙊𝙁 𝙎𝙋𝙔𝙎"/></div>
+              <div class="input-group"><label>Description (hype them up)</label><textarea id="a-mem-desc" rows="3" placeholder="Write their hype description..."></textarea></div>
+              <div class="input-group"><label>Tag / Rank Type</label>
+                <select id="a-mem-ranked">
+                  <option value="false">【☠︎】 Normal Raider</option>
+                  <option value="true">【𖦠】 Ranked Member</option>
+                </select>
+              </div>
+              <div class="input-group"><label>Status</label>
+                <select id="a-mem-status"><option value="active">Active</option><option value="inactive">Inactive</option></select>
+              </div>
+              <button class="btn btn-primary" onclick="addMember()">Add Member</button>
+              <div class="success-msg hidden" id="mem-ok">Member added to the brotherhood!</div>
+            </div>
+            <div class="admin-card" style="margin-top:1rem">
+              <div class="admin-card-label">Current Roster</div>
+              <div id="a-mem-list"></div>
+            </div>
+          </div>
+
+          <div class="admin-tab-content" id="tab-lboard">
+            <div class="admin-card">
+              <div class="admin-card-label">🏆 Add / Update Entry</div>
+              <div class="input-group"><label>Player Name</label><input type="text" id="a-lb-name" placeholder="Name"/></div>
+              <div class="input-group"><label>Raid Score</label><input type="number" id="a-lb-score" placeholder="0"/></div>
+              <button class="btn btn-primary" onclick="addLbEntry()">Save</button>
+              <div class="success-msg hidden" id="lb-ok">Saved!</div>
+            </div>
+            <div class="admin-card" style="margin-top:1rem">
+              <div class="admin-card-label">Current Rankings</div>
+              <div id="a-lb-list"></div>
+            </div>
+          </div>
+
+          <div class="admin-tab-content" id="tab-raidlog">
+            <div class="admin-card">
+              <div class="admin-card-label">🔥 Log a Raid</div>
+              <div class="input-group"><label>Target</label><input type="text" id="a-raid-target" placeholder="Enemy clan / player"/></div>
+              <div class="input-group"><label>Result</label>
+                <select id="a-raid-result"><option value="win">Victory</option><option value="loss">Defeat</option></select>
+              </div>
+              <div class="input-group"><label>Date</label><input type="text" id="a-raid-date" placeholder="e.g. Mar 05, 2026"/></div>
+              <div class="input-group"><label>Participants</label><input type="number" id="a-raid-parts" placeholder="0"/></div>
+              <button class="btn btn-primary" onclick="logRaid()">Log Raid</button>
+              <div class="success-msg hidden" id="raid-ok">Logged!</div>
+            </div>
+          </div>
+
+          <div class="admin-tab-content" id="tab-hofed">
+            <div class="admin-card">
+              <div class="admin-card-label">👑 Hall of Fame Entry</div>
+              <div class="input-group"><label>Name</label><input type="text" id="a-hof-name" placeholder="Member name"/></div>
+              <div class="input-group"><label>Title</label><input type="text" id="a-hof-title" placeholder="e.g. Raid Master"/></div>
+              <div class="input-group"><label>Achievement</label><textarea id="a-hof-ach" rows="3" placeholder="Describe their legacy..."></textarea></div>
+              <button class="btn btn-primary" onclick="addHof()">Add To Hall</button>
+              <div class="success-msg hidden" id="hof-ok">Added!</div>
+            </div>
+          </div>
+
+          <div class="admin-tab-content" id="tab-apps">
+            <div class="admin-card">
+              <div class="admin-card-label">📋 Recruitment Applications</div>
+              <div id="a-apps-list"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-skull">💀</div>
+      <div class="footer-brand">【☠︎】 NIGHT RAIDERS EMPIRE 【☠︎】</div>
+      <p class="footer-motto">"In the darkness, we rise. In the shadows, we rule."</p>
+      <p class="footer-copy">© 2026 𝐋𝐎𝐑𝐃♰𝔻𝐄𝐕𝐈𝐍𝐄 𓄿 — All Rights Reserved</p>
+    </footer>
+
+  </div><!-- end app -->
+
+  <!-- LOGIN MODAL -->
+  <div id="loginOverlay" class="login-overlay hidden">
+    <div class="login-card">
+      <button class="login-close" onclick="closeLogin()">✕</button>
+      <div class="login-skull-icon">💀</div>
+      <h2 class="login-title">Lord Access</h2>
+      <p class="login-sub">Restricted. Authorised personnel only.</p>
+      <div class="login-error hidden" id="loginError">Access denied. Invalid credentials.</div>
+      <div class="input-group"><label>Username</label><input type="text" id="loginUser" placeholder="Enter username" autocomplete="off"/></div>
+      <div class="input-group"><label>Password</label><input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+      <button class="btn btn-primary full" style="margin-top:0.5rem" onclick="doLogin()">Enter The Empire</button>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html> 
